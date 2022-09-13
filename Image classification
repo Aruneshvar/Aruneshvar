@@ -1,0 +1,18 @@
+from pathlib import Path
+import glob
+import pandas as pd
+
+images_dir = Path('img')
+images = images_dir.glob("*.tif")
+
+train_data = []
+
+counter = 0
+for img in images:
+  counter += 1
+  if counter <= 130:
+    train_data.append((img,1))
+  else:
+    train_data.append((img,0))
+ 
+train_data = pd.DataFrame(train_data,columns=['image','label'],index = None)
